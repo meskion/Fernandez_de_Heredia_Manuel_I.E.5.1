@@ -16,6 +16,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Clase con metodos estaticos que maneja la aplicación de la tienda y accede y
+ * manipula el fichero con los datos almacenados de los videojuegos
+ * 
+ * @author manuf
+ *
+ */
 public class TiendaVideojuegos {
 
 	private static Map<Integer, Videojuego> videojuegos;
@@ -39,6 +46,11 @@ public class TiendaVideojuegos {
 
 	}
 
+	/**
+	 * Metodo que se llama en main, inicializa las variables globales como el
+	 * escaner o el mapa de Videojuegos, y comprueba el estado del fichero, cargando
+	 * si es necesario
+	 */
 	public static void start() {
 		videojuegos = new HashMap<>();
 		sc = new Scanner(System.in);
@@ -51,6 +63,12 @@ public class TiendaVideojuegos {
 		menuPrincipal();
 	}
 
+	/**
+	 * metodo que lee los objetos 'Videojuego' del archivo y los guarda en el
+	 * HashMap de la clase para su uso en la sesion
+	 * 
+	 * @param string
+	 */
 	private static void leerVideojuegos(String string) {
 
 		videojuegos.clear();
@@ -96,6 +114,9 @@ public class TiendaVideojuegos {
 
 	}
 
+	/**
+	 * Metodo con el switch de opciones de la aplicación que el usuario navega.
+	 */
 	private static void menuPrincipal() {
 
 		boolean continuar = true;
@@ -132,6 +153,9 @@ public class TiendaVideojuegos {
 
 	}
 
+	/**
+	 * añade un videojuego al HashMap de la clase, leyendo valores por consola.
+	 */
 	private static void addVideojuego() {
 		System.out.println("Introduzca los datos del videojuego:");
 		boolean continuar;
@@ -163,11 +187,18 @@ public class TiendaVideojuegos {
 
 	}
 
+	/**
+	 * Lista los videojuegos del HashMap por consola
+	 */
 	private static void listarVideojuegos() {
 		videojuegos.values().forEach(System.out::println);
 
 	}
 
+	/**
+	 * Elimina un videojuego segun un codigo leido por consola, y pide confirmación
+	 * antes de realizar la operacion final, por seguridad.
+	 */
 	private static void borrarVideojuego() {
 
 		Integer codigo = null;
@@ -197,9 +228,12 @@ public class TiendaVideojuegos {
 
 	}
 
+	/**
+	 * Guarda los datos temporales en el HashMap en el fichero "videojue.dat". Si no
+	 * existiese ese fichero lo crearía.
+	 */
 	private static void guardarDatos() {
 		if (cambiosPendientes) {
-			// escribir el mapa en el fichero
 			try {
 				FileOutputStream fs = new FileOutputStream("videojue.dat");
 				ObjectOutputStream oos = new ObjectOutputStream(fs);
@@ -222,6 +256,11 @@ public class TiendaVideojuegos {
 			System.out.println("No hay cambios por guardar");
 	}
 
+	/**
+	 * Carga los datos de "videojue.dat" en la aplicación, eliminando cualquier
+	 * cambio no guardado desde la ultima vez que se cargó desde fichero. El sistema
+	 * pide confirmación de la operación si hay cambios que se van a perder
+	 */
 	private static void recuperarDatos() {
 		if (cambiosPendientes) {
 			System.out.println("Ha realizado cambios que no ha guardado en disco.");
@@ -239,6 +278,9 @@ public class TiendaVideojuegos {
 
 	}
 
+	/**
+	 * Sale de la aplicación. Si el sistema detecta cambios sin guardar, da la opción de guardarlos antes de salir.
+	 */
 	private static void salir() {
 		if (cambiosPendientes) {
 			System.out.println(
@@ -251,25 +293,5 @@ public class TiendaVideojuegos {
 		System.out.println("Cerrando aplicación...");
 	}
 
-	private static void test() {
-		int cod = 1;
-
-		List<Videojuego> a = new ArrayList<>();
-		a.add(new Videojuego("aa", Plataforma.PC, LocalDate.of(1, 1, 1)));
-		Videojuego vi = null;
-		for (Videojuego v : a) {
-			if (v.getCodigo().equals(1)) {
-
-				vi = v;
-			}
-
-		}
-		System.out.println(a.toString());
-		a.remove(vi);
-		System.out.println(a.toString());
-	}
-
-	public static void main(String[] args) {
-		test();
-	}
+	
 }

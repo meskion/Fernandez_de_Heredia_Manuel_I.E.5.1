@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"videojuegos","c":"TiendaVideojuegos","l":"start()"},{"p":"videojuegos","c":"TiendaVideojuegos","l":"TiendaVideojuegos()","u":"%3Cinit%3E()"}];updateSearchResults();
