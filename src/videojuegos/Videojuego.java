@@ -20,27 +20,17 @@ public class Videojuego implements Serializable {
 	private Plataforma plataforma;
 	private LocalDate lanzamiento;
 
-	public Videojuego(String nombre, Plataforma plataforma, LocalDate lanzamiento){
-
+	public Videojuego(String nombre, Plataforma plataforma, LocalDate lanzamiento) {
+		
 		setNombre(nombre);
 		setPlataforma(plataforma);
 		setLanzamiento(lanzamiento);
 		this.codigo = contadorCodigo++;
 	}
-	
-	
 
 	public static Integer getContadorCodigo() {
 		return contadorCodigo;
 	}
-
-
-
-	public static void setContadorCodigo(Integer contadorCodigo) {
-		Videojuego.contadorCodigo = contadorCodigo;
-	}
-
-
 
 	public Integer getCodigo() {
 		return codigo;
@@ -67,20 +57,20 @@ public class Videojuego implements Serializable {
 		return lanzamiento;
 	}
 
-	public void setLanzamiento(LocalDate lanzamiento){
+	public void setLanzamiento(LocalDate lanzamiento) {
 		Validar.validarFecha(lanzamiento);
 		this.lanzamiento = lanzamiento;
 	}
 
 	@Override
 	public String toString() {
-		return String.join("",
-				"codigo del videojuego: ", codigo.toString(),
-				"\n nombre del videojuego:", nombre,
-				"\n plataforma: ", plataforma.toString(),
-				"\n lanzamiento: ", lanzamiento.toString(), "\n");
+		return String.join("", "codigo del videojuego: ", codigo.toString(), "\n nombre del videojuego:", nombre,
+				"\n plataforma: ", plataforma.toString(), "\n lanzamiento: ", lanzamiento.toString(), "\n");
 	}
-	
-	
+
+	public static void setContadorCodigo(int i) {
+
+		contadorCodigo = i;
+	}
 
 }
